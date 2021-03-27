@@ -72,19 +72,19 @@
                         <i class="far fa-paper-plane fa-2x mb-2 text-white"></i>
                         <h2 class="text-white mb-5">Search your document here!</h2>
                         <form class="form-inline d-flex">
-                            <input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" type="email" placeholder="Nomor Kontrak..." />
+                            <input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="nomor" type="text" placeholder="Nomor Kontrak..." />
                         </form>
                         <h2></h2>
                         <form class="form-inline d-flex">
-                            <input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" type="email" placeholder="Nama Corporate Customer..." />
+                            <input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="email" type="text" placeholder="Nama Corporate Customer..." />
                         </form>
                         <h2></h2>
                         <form class="form-inline d-flex">
-                            <input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" type="email" placeholder="Nama AM..." />
+                            <input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="nama" type="text" placeholder="Nama AM..." />
                         </form>
                         <h2></h2>
                         <form class="form-inline d-flex">
-                            <input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="inputEmail" type="email" placeholder="Layanan..." />
+                            <input class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" id="layanan" type="layanan" placeholder="Layanan..." />
                         </form>
                         <h2></h2>
                         <select id='selUser' class="form-control flex-fill mr-0 mr-sm-2 mb-3 mb-sm-0" >
@@ -102,7 +102,7 @@
                             <option value='11'>P8</option> 
                           </select>
                         <h2></h2>
-                        <button class="btn btn-danger mx-auto" type="submit"><i class="fa fa-search"></i> Search</button>
+                        <button id="btnResult" class="btn btn-danger mx-auto" type="button" onclick="goToResult()"><i class="fa fa-search"></i> Search</button>
                         <button class="btn btn-danger mx-auto" type="submit"><i class="fa fa-upload"></i> Upload</button>
                     </div>
                 </div>
@@ -159,5 +159,25 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
         <!-- Core theme JS-->
         <script src="js/scripts.js"></script>
+        <script>
+            function goToResult(){
+                var nomor = document.getElementById('nomor').value; // ini nilai dari tag input dengan id nomor
+                var email = document.getElementById('email').value; 
+                var nama = document.getElementById('nama').value; 
+                var layanan = document.getElementById('layanan').value; 
+
+               var xhr = new XMLHttpRequest();
+               xhr.open("POST", "http://127.0.0.1:300/serach", true)
+               xhr.setRequestHeader('Content-Type', 'application/json');
+                xhr.send(JSON.stringify({
+                    data: {
+                        "nomor" : nomor,
+                        "email" : email,
+                        "nama" : nama,
+                        "layanan" : layanan 
+                    }
+                }));
+            }
+        </script>
     </body>
 </html>
