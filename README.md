@@ -1,3 +1,3 @@
-#Project Magang
+# Project Magang
 
 file masih static HTML
